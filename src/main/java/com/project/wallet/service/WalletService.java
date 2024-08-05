@@ -50,14 +50,14 @@ public class WalletService {
             }
             case RETIRADA, COMPRA -> {
                 if(balance < walletEvent.getAmount()) {
-                    throw new AmountNotValidException("Amount must be less than balance to withdraw");
+                    throw new AmountNotValidException("Saldo insuficiente para realizar a transaçao");
                 }
                 setId(wallet, walletEvent);
                 wallet.setBalance(balance - walletEvent.getAmount());
                 walletRepository.save(wallet);
             }
             default -> {
-                log.error("Transaction type not found");
+                log.error("Tipo de transaçao nao encontrada");
                 setId(wallet, walletEvent);
                 wallet.setBalance(balance);
                 walletRepository.save(wallet);

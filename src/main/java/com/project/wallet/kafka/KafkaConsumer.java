@@ -40,7 +40,7 @@ public class KafkaConsumer {
         }
     }
 
-    private void verifyDuplicatedEvent(WalletEvent walletEvent) {
+    void verifyDuplicatedEvent(WalletEvent walletEvent) {
         if(!walletStatementRepository.existsById(walletEvent.getId())){
             persistOnTableWalletIfNotExist(walletEvent);
             persistEvents(walletEvent);

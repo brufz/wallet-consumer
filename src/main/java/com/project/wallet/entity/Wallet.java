@@ -25,4 +25,9 @@ public class Wallet {
     private Double balance;
     @OneToMany
     private List<WalletEvent> events;
+
+    public Wallet(String id, Double balance) {
+        this.id = id;
+        this.balance = balance;
+    }
 }
