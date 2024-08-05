@@ -18,10 +18,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Wallet {
     @Id
     private String id;
-    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private Double balance;
     @OneToMany
     private List<WalletEvent> events;

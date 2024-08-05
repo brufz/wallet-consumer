@@ -8,7 +8,7 @@ services:
     environment:
       - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT
       - KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092
-      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://192.168.0.124:9092
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
     depends_on:
       - zookeeper
@@ -30,22 +30,16 @@ services:
       - "8080:8080"
     restart: always
     environment:
-      - KAFKA_CLUSTERS_0_NAME=alura
-      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=192.168.0.124:9092
+      - KAFKA_CLUSTERS_0_NAME=wallet
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=PLAINTEXT://kafka:9092
       - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
 
-#  producer:
-#    image: producer:latest
-#    container_name: producer-svc-container
-#    ports:
-#      - "8070:8070"
-#    depends_on:
-#      - broker
-#
-#  consumer:
-#    image: consumer:latest
-#    container_name: consumer-svc-container
-#    ports:
-#      - "8090:8090"
-#    depends_on:
-#      - broker
+  postgres-container:
+    image: postgres:latest
+    container_name: postgres-container
+    environment:
+      POSTGRES_DB: wallet
+      POSTGRES_USER: bruna
+      POSTGRES_PASSWORD: 123456
+    ports:
+      - "5432:5432"
