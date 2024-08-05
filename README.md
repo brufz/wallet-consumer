@@ -1,31 +1,43 @@
-Executar o docker-compose para subir o ambiente do kafka e zookeeper
+# Instruções para Executar o Ambiente
 
-Caso o projeto nao rode em sua maquina, deve-se adicionar ao host o seguinte endereço:
+## 1. Subir o Ambiente Kafka e Zookeeper
 
-127.0.0.1 kafka localhost localhost.localdomain localhost4 localhost4.localdomain4
+Execute o seguinte comando para iniciar o ambiente Kafka e Zookeeper usando Docker Compose:
 
-::1 localhost localhost.localdomain localhost6 localhost6.localdomain6
+```bash
+docker-compose up -d
 
-Modificar o conteiner docker do docker-compose
-echo 'listeners=PLAINTEXT://kafka:9092' | tee -a /opt/bitnami/kafka/config/server.properties
+## 2. Rodar os Projetos Localmente
+Certifique-se de rodar os seguintes projetos localmente:
 
-Para enviar mensagens a partir do console-producer
-kafka-console-producer --broker-list localhost:9092 --topic my-topic
+wallet
+wallet-producer
 
-Exemplos de JSON para body do POST - producer kafka:
+## Acessar o Swagger
+
+### PRODUCER
+
+- http://localhost:8070/swagger-ui/index.html#
+
+**Exemplos de JSON para o corpo do POST - Producer Kafka:**
+
+```json
 {
-"cpf": "43693769800",
-"amount": 10.00,
-"transactionType": "ADICAO",
-"transactionDate": "2023-10-10"
-}
-{
-"cpf": "43693769800",
-"amount": 1.00,
-"transactionType": "COMPRA",
-"transactionDate": "2023-10-10"
+  "cpf": "43693769800",
+  "amount": 10.00,
+  "transactionType": "ADICAO",
+  "transactionDate": "2023-10-10"
 }
 
-Para construir o projeto:
--Na pasta raiz do projeto, executar o comando:
-docker build -t wallet-consumer-image .
+{
+  "cpf": "43693769800",
+  "amount": 1.00,
+  "transactionType": "COMPRA",
+  "transactionDate": "2023-10-10"
+}
+
+### CONSUMER
+- http://localhost:8090/swagger-ui/index.html#
+**Token para autenticação**
+Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdGF0dXMiOiJBQ1RJVkUiLCJyb2xlIjoiVVNFUiJ9.rtYrujHxaPj9i0eYeRCKVWdHzn76hpZrs3fppvrSfeYeCIQb0Em5k1RbzqCXkXtCtuisgJIZmlSido6G96TJxw
+
