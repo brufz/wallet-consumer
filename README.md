@@ -41,3 +41,4 @@ wallet-producer
 **Token para autenticação**
 Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdGF0dXMiOiJBQ1RJVkUiLCJyb2xlIjoiVVNFUiJ9.rtYrujHxaPj9i0eYeRCKVWdHzn76hpZrs3fppvrSfeYeCIQb0Em5k1RbzqCXkXtCtuisgJIZmlSido6G96TJxw
 
+![img.png](img.png)
